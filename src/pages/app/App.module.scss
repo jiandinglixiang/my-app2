@@ -1,0 +1,11 @@
+$wd: 600px;
+.container {
+  width: $wd;
+  height: $wd;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-columns: $wd/3;
+  grid-template-rows: repeat(3, $wd/3);
+  grid-auto-rows: $wd/3;
+}
