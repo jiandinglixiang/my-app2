@@ -1,5 +1,7 @@
 $wd: 600px;
+
 .container {
+  position: relative;
   width: $wd;
   height: $wd;
   margin: 0 auto;
@@ -8,4 +10,126 @@ $wd: 600px;
   grid-auto-columns: $wd/3;
   grid-template-rows: repeat(3, $wd/3);
   grid-auto-rows: $wd/3;
+  color: white;
+
+  li {
+    div {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
+      width: $wd/3;
+      height: $wd/3;
+      position: absolute;
+      z-index: 1;
+    }
+  }
+
+  li:nth-child(1) > div {
+    left: 0;
+    top: 0;
+  }
+
+  li:nth-child(2) > div {
+    left: $wd/3;
+    top: 0;
+    right: $wd/3;
+  }
+
+  li:nth-child(3) > div {
+    right: 0;
+    top: 0;
+    left: $wd/3 * 2;
+  }
+
+  li:nth-child(4) > div {
+    left: 0;
+    top: $wd/3;
+    bottom: $wd/3;
+  }
+
+  li:nth-child(5) > div {
+    left: $wd/3;
+    top: $wd/3;
+    bottom: $wd/3;
+    right: $wd/3;
+  }
+
+  li:nth-child(6) > div {
+    left: $wd/3 * 2;
+    right: 0;
+    top: $wd/3;
+    bottom: $wd/3;
+  }
+
+  li:nth-child(7) > div {
+    left: 0;
+    top: $wd/3 * 2;
+  }
+
+  li:nth-child(8) > div {
+    top: $wd/3 * 2;
+    bottom: 0;
+    left: $wd/3;
+    right: $wd/3;
+  }
+
+  li:nth-child(9) > div {
+    right: 0;
+    bottom: 0;
+    left: $wd/3 * 2;
+    top: $wd/3 * 2;
+  }
+
+  .icon-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 3;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .enter {
+    position: absolute;
+    z-index: 2;
+    animation: enter 2s 1 ease-in-out both;
+  }
+
+  .leave {
+    position: absolute;
+    z-index: 2;
+    animation: leave 2s 1 ease-in-out both;
+  }
+}
+
+@keyframes enter {
+  from {
+    width: $wd/3;
+    height: $wd/3;
+  }
+  to {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: $wd;
+    height: $wd;
+  }
+}
+
+@keyframes leave {
+  from {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: $wd;
+    height: $wd;
+  }
+  to {
+    width: $wd/3;
+    height: $wd/3;
+  }
 }
