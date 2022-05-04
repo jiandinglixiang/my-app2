@@ -12,18 +12,28 @@ $wd: 600px;
   grid-auto-rows: $wd/3;
   color: white;
 
-  li {
-    div {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      align-items: center;
-      width: $wd/3;
-      height: $wd/3;
-      position: absolute;
-      z-index: 1;
+  .checkeredContainer {
+    width: 100%;
+    height: 100%;
+  }
+
+  > li > div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: $wd/3;
+    height: $wd/3;
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+
+    > div {
+      width: 100%;
+      height: 100%;
     }
   }
+
 
   li:nth-child(1) > div {
     left: 0;
@@ -95,6 +105,8 @@ $wd: 600px;
     position: absolute;
     z-index: 2;
     animation: enter 2s 1 ease-in-out both;
+    width: $wd;
+    height: $wd;
   }
 
   .leave {
