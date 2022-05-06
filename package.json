@@ -77,7 +77,10 @@
       "react-app",
       "react-app/jest",
       "prettier"
-    ]
+    ],
+    "rules": {
+      "import/no-anonymous-default-export": 0
+    }
   },
   "browserslist": {
     "production": [

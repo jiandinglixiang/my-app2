@@ -10,6 +10,29 @@ import {
   Divider,
   ListItemAvatar,
   ListItemText,
+  TableContainer,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  TableHead,
+  Paper,
+  Tooltip,
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  TextareaAutosize,
+  Alert,
+  AlertTitle,
+  Backdrop,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  CircularProgress,
+  Skeleton,
+  Snackbar,
 } from "@mui/material";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { deepOrange, deepPurple } from "@mui/material/colors";
@@ -129,19 +152,124 @@ const colorsComponent: Array<Function> = [
     );
   },
   () => {
-    return <div>blue</div>;
+    const [open, setOpen] = useState(false);
+
+    return (
+      <div>
+        <Button onClick={() => setOpen(!open)}>Open simple snackbar</Button>
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={() => setOpen(!open)}
+          message="Note archived"
+          action={
+            <>
+              <div>123</div>
+              <button>243</button>
+            </>
+          }
+        >
+          <Alert severity="warning">This is a warning message!</Alert>
+        </Snackbar>
+      </div>
+    );
   },
   () => {
-    return <div>yellow</div>;
+    const [open, setOpen] = useState(false);
+
+    return (
+      <div>
+        <Skeleton />
+        <Skeleton animation="wave" />
+        <Skeleton animation={false} />
+        <Button onClick={() => setOpen(!open)}>open</Button>
+        <Dialog open={open} onClose={() => setOpen(false)}>
+          <DialogTitle>I am a title</DialogTitle>
+          <DialogContent>
+            <div>
+              <CircularProgress color="success" />
+            </div>
+            I am a cOntent
+          </DialogContent>
+          <DialogActions>
+            <Button>1</Button>
+            <Button>2</Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
   },
   () => {
-    return <div>purple</div>;
+    const [open, setOpen] = useState(false);
+    return (
+      <div>
+        <Button onClick={() => setOpen(!open)}>Backdrop</Button>
+        <Backdrop open={open}>
+          <Button onClick={() => setOpen(!open)}>Arrow</Button>
+        </Backdrop>
+        <Alert>
+          <AlertTitle>123</AlertTitle>
+          this is a alert
+        </Alert>
+        <TextareaAutosize
+          aria-label="empty textarea"
+          placeholder="Empty"
+          minRows={3}
+          style={{ width: "100%" }}
+        />
+      </div>
+    );
   },
   () => {
-    return <div>orange</div>;
+    return (
+      <div>
+        <Tooltip title={123123}>
+          <Button>Arrow</Button>
+        </Tooltip>
+        <Paper variant="outlined" square>
+          <Typography variant="subtitle1" gutterBottom>
+            subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Quos blanditiis tenetur
+          </Typography>
+        </Paper>
+        <Accordion>
+          <AccordionSummary>1</AccordionSummary>
+          <AccordionDetails>12</AccordionDetails>
+        </Accordion>
+      </div>
+    );
   },
   () => {
-    return <div>pink</div>;
+    return (
+      <div>
+        <TableContainer>
+          <Table aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>1</TableCell>
+                <TableCell>1</TableCell>
+                <TableCell>1</TableCell>
+                <TableCell>1</TableCell>
+                <TableCell>1</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row, index) => {
+                return (
+                  <TableRow key={index}>
+                    <TableCell>{row.name}</TableCell>
+                    <TableCell>{row.calories}</TableCell>
+                    <TableCell>{row.fat}</TableCell>
+                    <TableCell>{row.carbs}</TableCell>
+                    <TableCell>{row.protein}</TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
   },
   () => {
     return (
@@ -157,9 +285,7 @@ const colorsComponent: Array<Function> = [
             <ListItemAvatar>
               <Avatar src={`${process.env.PUBLIC_URL}/logo192.png`} />
             </ListItemAvatar>
-            <ListItemText secondary={<div>124124124</div>}>
-              My custom
-            </ListItemText>
+            <ListItemText secondary={124124124}>My custom</ListItemText>
           </ListItem>
         </List>
       </div>
@@ -174,4 +300,42 @@ const colorsComponent: Array<Function> = [
   },
 ];
 
+interface tableData {
+  name: string;
+  calories: number;
+  fat: number;
+  carbs: number;
+  protein: number;
+}
+
+const rows: Array<tableData> = [
+  {
+    name: "string",
+    calories: 123,
+    fat: 123,
+    carbs: 43,
+    protein: 54,
+  },
+  {
+    name: "string",
+    calories: 123,
+    fat: 123,
+    carbs: 43,
+    protein: 54,
+  },
+  {
+    name: "string",
+    calories: 123,
+    fat: 123,
+    carbs: 43,
+    protein: 54,
+  },
+  {
+    name: "string",
+    calories: 123,
+    fat: 123,
+    carbs: 43,
+    protein: 54,
+  },
+];
 export default App;

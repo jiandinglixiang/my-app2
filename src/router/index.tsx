@@ -2,6 +2,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import App from "../pages/app/App";
 import FormInput from "../pages/formInput";
 import { Button } from "@mui/material";
+import { Counter } from "../features/counter/Counter";
 
 function route() {
   return (
@@ -39,7 +40,7 @@ function route() {
         }
       />
       <Route path="forward2">
-        <Route path="top" element={<App />} />
+        <Route path="top" element={<Counter />} />
         <Route index element={<FormInput />} />
       </Route>
     </Routes>

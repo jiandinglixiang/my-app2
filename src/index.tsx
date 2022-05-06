@@ -6,18 +6,30 @@ import reportWebVitals from "./reportWebVitals";
 import "./assets/index.css";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./router";
-import { CssBaseline } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material";
 
+export const themeOptions = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#112cb7",
+    },
+    secondary: {
+      main: "#f50057",
+    },
+  },
+});
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <CssBaseline />
     <Provider store={store}>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <ThemeProvider theme={themeOptions}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>
 );
