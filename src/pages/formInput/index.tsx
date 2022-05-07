@@ -9,7 +9,7 @@ import {
   combineChanges,
   increment1,
   increment2Async,
-} from "../../redux/formSlice";
+} from "./formSlice";
 
 export default function () {
   const value = useAppSelector((state: RootState) => state.form.value);

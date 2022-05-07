@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppThunk } from "../app/store";
+import { AppThunk } from "../../app/store";
 
 export interface FormState {
   value: number;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, useState } from "react";
 import sty from "./App.module.scss";
 import Block from "../../components/Block/index";
 import CloseIcon from "@mui/icons-material/Close";
@@ -40,6 +40,14 @@ import MailIcon from "@mui/icons-material/Mail";
 import { Chip } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { FormState } from "../formInput/formSlice";
+import {
+  CHANGE_VALUE1,
+  CHANGE_VALUE2,
+  CHANGE_VALUE3,
+  CHANGE_VALUE4,
+} from "../../redux";
 
 const colors: Array<string> = [
   "red",
@@ -55,6 +63,8 @@ const colors: Array<string> = [
 
 function App() {
   const [animation, setAnimation]: [Array<string>, Function] = useState([]);
+  const form = useSelector((state: { form: FormState }) => state.form);
+  const dispatch = useDispatch();
 
   function enter(x: number, disable?: boolean) {
     const currently = animation[x];
@@ -91,8 +101,71 @@ function App() {
     }
   }
 
+  // @ts-ignore
+  // @ts-ignore
+  // @ts-ignore
   return (
     <div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+        <Button
+          variant="contained"
+          onClick={() =>
+            dispatch({
+              type: CHANGE_VALUE1,
+              payload: form.value + 1,
+            })
+          }
+        >
+          同步{form.value}
+        </Button>
+        <Button
+          variant="contained"
+          color={"info"}
+          onClick={() =>
+            // @ts-ignore
+            dispatch(function (x) {
+              dispatch({
+                type: CHANGE_VALUE1,
+                payload: form.value,
+              });
+              return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  dispatch({
+                    type: CHANGE_VALUE2,
+                    payload: form.value,
+                  });
+                  resolve({});
+                }, 1000);
+              });
+            })
+          }
+        >
+          异步{form.asyncValue}
+        </Button>
+        <Button
+          variant="contained"
+          color={"error"}
+          onClick={() =>
+            dispatch({
+              type: CHANGE_VALUE3,
+              payload: form.value,
+            })
+          }
+        >
+          组合同步{form.combineValue}
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() =>
+            dispatch({
+              type: CHANGE_VALUE4,
+              payload: form.value,
+            })
+          }
+        >
+          组合异步同步{form.asyncCombineValue}
+        </Button>
+      </div>
       <ul className={sty.container}>
         {colors.map((value, index) => {
           return (
@@ -338,4 +411,9 @@ const rows: Array<tableData> = [
     protein: 54,
   },
 ];
-export default App;
+
+export default connect(null, function (dispatch, props) {
+  return {
+    dispatch,
+  };
+})(App);
